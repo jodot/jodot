@@ -38,6 +38,12 @@ with an easy framework to structure your automation duties. It:
  * Serves as the meeting point for all kinds of duty triggers (WIP)
  * Easily share useful duties with others and use shared duties (hopefully)
 
+Installation
+============
+```
+npm install -g jodot
+```
+
 How to use
 ==========
 
@@ -47,19 +53,16 @@ responsible for. See the sample duties.hjson for an example.
 Duties are essentially npm packages that comply to the way a Jodot duty should
 be written. There isn't much to writing a duty really. See Writing a Jodot duty.
 
-Use a process control system like [Supervisor] to manage the livelihood of the
-Jodot process.
-
 Writing a Jodot duty
 ====================
 
 It is very easy to write Jodot duties. If you know how to code in Node.js, then
-you will know how to write a Jodot duty.There's only thing that all Jodot duty
+you will know how to write a Jodot duty. There's only thing that all Jodot duty
 must have:
 
 >It must implement the callback that the (child) process should call whenever
 a message is received. The duty is performed within this callback function.
-See [@jodot/alive] for an example.
+See [jodot-alive] for an example.
 
 If you want to share your duty, there's two more things that you'll need to do.
 See next section.
@@ -69,10 +72,7 @@ Sharing reusable duties
 
 The more Jodot duties are shared by its users, the more useful it will become.
 Help grow Jodot's usefulness by sharing duties that you had composed. You can
-share a Jodot duty by:
-
-1. Making it available on npm with the [@jodot scope]
-2. Specifying "jodot" as a dependency within its package.json.
+share a Jodot duty by specifying "jodot" as a dependency within its package.json.
 
 Temporarily caveats
 ===================
@@ -80,6 +80,5 @@ Temporarily caveats
 1. Jodot does not currently support one-off duties. This means that, duties that
  you compose should never exit intentionally.
 
-[@jodot scope]: <https://www.npmjs.com/browse/depended/jodot>
 [GitHub page]: <https://github.com/jodot>
-[@jodot/alive]: <https://github.com/jodot/@jodot-alive>
+[jodot-alive]: <https://github.com/jodot/@jodot-alive>
