@@ -48,7 +48,8 @@ How to use
 ==========
 
 Create a duties.hjson file that list all the duties that you want Jodot to be
-responsible for. See the sample duties.hjson for an example.
+responsible for. See the sample duties.hjson for an example. Run Jodot where
+duties.hjson reside.
 
 Duties are essentially npm packages that comply to the way a Jodot duty should
 be written. There isn't much to writing a duty really. See Writing a Jodot duty.
