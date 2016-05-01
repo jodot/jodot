@@ -75,6 +75,12 @@ The more Jodot duties are shared by its users, the more useful it will become.
 Help grow Jodot's usefulness by sharing duties that you had composed. You can
 share a Jodot duty by specifying "jodot" as a dependency within its package.json.
 
+Publicly available duties
+=========================
+
+Here's a list of [publicly available duties] that you can configure for your
+own automation needs.
+
 Temporarily caveats
 ===================
 
@@ -82,3 +88,4 @@ Temporarily caveats
  you compose should never exit intentionally.
 
 [jodot-alive]: <https://github.com/jodot/jodot-alive>
+[publicly available duties]:https://www.npmjs.com/browse/depended/jodot
