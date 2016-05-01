@@ -1,0 +1,7 @@
+[
+  # Duty to log that Jodot is alive
+  {
+    schedule: 1 * * * * *
+    package: jodot-alive
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "name": "jodot",
+  "version": "1.0.0",
+  "description": "Install, configure and run Jodot duties",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jodot",
+    "automator",
+    "duties",
+    "tasks",
+    "events",
+    "scheduler"
+  ],
+  "author": "Vito Chin <chin.vito@gmail.com> (http://www.vitochin.com)",
+  "license": "ISC",
+  "dependencies": {
+    "hjson": "^1.8.2",
+    "node-persist": "0.0.11",
+    "node-schedule": "^1.1.0",
+    "npmi": "^1.0.1"
+  }
+}
