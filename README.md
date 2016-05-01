@@ -80,5 +80,4 @@ Temporarily caveats
 1. Jodot does not currently support one-off duties. This means that, duties that
  you compose should never exit intentionally.
 
-[GitHub page]: <https://github.com/jodot>
-[jodot-alive]: <https://github.com/jodot/@jodot-alive>
+[jodot-alive]: <https://github.com/jodot/jodot-alive>
