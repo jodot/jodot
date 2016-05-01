@@ -14,8 +14,8 @@
     "events",
     "scheduler"
   ],
-  "author": "Vito Chin <chin.vito@gmail.com> (http://www.vitochin.com)",
-  "license": "ISC",
+  "author": "Vito Chin <vito@php.net> (http://www.vitochin.com)",
+  "license": "MIT",
   "dependencies": {
     "hjson": "^1.8.2",
     "node-persist": "0.0.11",
