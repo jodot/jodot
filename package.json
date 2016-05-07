@@ -15,6 +15,14 @@
     "scheduler"
   ],
   "author": "Vito Chin <vito@php.net> (http://www.vitochin.com)",
+  "homepage": "https://github.com/jodot/jodot",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jodot/jodot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jodot/jodot/issues"
+  },
   "license": "MIT",
   "dependencies": {
     "hjson": "^1.8.2",
