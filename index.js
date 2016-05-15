@@ -3,9 +3,8 @@ var npmi = require('npmi');
 var path = require('path');
 var Hjson = require('hjson');
 var cp = require('child_process');
-var schedule = require('node-schedule');
-
-var schedules = [];
+var scheduler = require('./lib/scheduler.js');
+var runner = require('./lib/runner.js');
 
 fs.readFile('duties.hjson', 'utf8', function(err, content) {
   var duties = Hjson.rt.parse(content);
@@ -36,15 +35,11 @@ var processDuty = function(dutyDef) {
   if ((dutyDef.bootstrap != undefined)) {
     duty.setup(...dutyDef.bootstrap);
   }
-  var sd = schedule.scheduleJob(dutyDef.schedule, function(dt,dd) {
-    try {
-      if (dd.params == undefined) {
-        dt.send([]);
-      } else {
-        dt.send(...dd.params);
-      }
-    } catch (e) {
-      console.log("Duty failed: " + e);
-    }
-  }.bind(null, duty, dutyDef));
+
+  if (dutyDef.schedule != undefined) {
+    scheduler.scheduleDuty(duty, dutyDef);
+  } else {
+    runner.run(duty, dutyDef);
+  }
+
 }
