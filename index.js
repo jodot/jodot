@@ -17,6 +17,7 @@ fs.readFile('duties.hjson', 'utf8', function(err, content) {
 var loadDuty = function(dutyDef, callback) {
   var options = {
   	name: dutyDef.package,
+    localInstall: dutyDef.localInstall
   };
   npmi(options, function (err, result) {
   	if (err) {
@@ -29,12 +30,9 @@ var loadDuty = function(dutyDef, callback) {
 }
 
 var processDuty = function(dutyDef) {
-  try {
-    fs.accessSync(dutyDef.package, fs.F_OK);
-    var duty = cp.fork(dutyDef.package);
-  } catch (e) {
-    var duty = cp.fork("./node_modules/"+dutyDef.package);
-  }
+
+  var duty = cp.fork(require.resolve(dutyDef.package));
+
   if ((dutyDef.bootstrap != undefined)) {
     duty.setup(...dutyDef.bootstrap);
   }
