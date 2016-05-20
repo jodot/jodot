@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+require('../index.js').start().then((ingrained) => {
+  console.log("All duties ingrained:");
+  console.log(ingrained);
+}).catch((error) => {
+  console.log(error.message);
+  process.exit(0);
+});
+

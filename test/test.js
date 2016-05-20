@@ -1,3 +1,7 @@
-describe('index.js', function () {
+describe('jodot', function () {
+
+
+
+
 
 });

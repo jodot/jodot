@@ -6,30 +6,53 @@ var cp = require('child_process');
 var scheduler = require('./lib/scheduler.js');
 var runner = require('./lib/runner.js');
 
-fs.readFile('duties.hjson', 'utf8', function(err, content) {
-  var duties = Hjson.rt.parse(content);
-  duties.forEach(function(dutyDef, index) {
-    loadDuty(dutyDef, processDuty);
-  });
-});
+var Jodot = function () {};
 
-var loadDuty = function(dutyDef, callback) {
+Jodot.prototype.start = function () {
+
+  return new Promise((resolve, reject) => {
+    fs.readFile('duties.hjson', 'utf8', function(err, content) {
+      if(err) {
+        reject(err);
+      } else {
+        var duties = Hjson.rt.parse(content);
+        let ingrained = duties.map((dutyDef) => {
+          return new Promise((resolve, reject) => {
+  	        loadDuty(dutyDef, resolve, reject);
+          })
+          .then((result) => {
+            processDuty(result, resolve, reject);
+          })
+          .catch((err) => {
+            console.log("error detected");
+            console.log(err);
+          });
+        });
+
+        Promise.all(ingrained).then(() => resolve(true));
+      }
+    });
+  });
+};
+
+module.exports = new Jodot();
+
+var loadDuty = function(dutyDef, resolve, reject) {
   var options = {
   	name: dutyDef.package,
     localInstall: dutyDef.localInstall
   };
   npmi(options, function (err, result) {
   	if (err) {
-    	if  	(err.code === npmi.LOAD_ERR)	console.log('npm load error');
-    	else if (err.code === npmi.INSTALL_ERR) console.log('npm install error');
-      console.log(err.message);
+      reject(err);
   	}
-    callback(dutyDef);
+    resolve(dutyDef);    
   });
 }
 
-var processDuty = function(dutyDef) {
+var processDuty = function(dutyDef, resolve, reject) {
 
+  console.log(dutyDef.package); 
   var duty = cp.fork(require.resolve(dutyDef.package));
 
   if ((dutyDef.bootstrap != undefined)) {
@@ -41,5 +64,5 @@ var processDuty = function(dutyDef) {
   } else {
     runner.run(duty, dutyDef);
   }
-
+  resolve(true);
 }
