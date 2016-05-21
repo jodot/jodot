@@ -5,31 +5,34 @@ var Hjson = require('hjson');
 var cp = require('child_process');
 var scheduler = require('./lib/scheduler.js');
 var runner = require('./lib/runner.js');
+var path = require("path");
 
 var Jodot = function () {};
 
-Jodot.prototype.start = function () {
+Jodot.prototype.start = () => {
 
-  return new Promise((resolve, reject) => {
+  return new Promise(function (resolve, reject) {
     fs.readFile('duties.hjson', 'utf8', function(err, content) {
       if(err) {
         reject(err);
       } else {
         var duties = Hjson.rt.parse(content);
-        let ingrained = duties.map((dutyDef) => {
+        var ingrained = duties.map((dutyDef) => {
           return new Promise((resolve, reject) => {
   	        loadDuty(dutyDef, resolve, reject);
           })
           .then((result) => {
             processDuty(result, resolve, reject);
           })
+          .then((result) => {
+            processDuty(result, resolve, reject);
+          })
           .catch((err) => {
-            console.log("error detected");
-            console.log(err);
+            reject(err);
           });
         });
 
-        Promise.all(ingrained).then(() => resolve(true));
+        Promise.all(ingrained).then(() => resolve());
       }
     });
   });
@@ -40,29 +43,27 @@ module.exports = new Jodot();
 var loadDuty = function(dutyDef, resolve, reject) {
   var options = {
   	name: dutyDef.package,
-    localInstall: dutyDef.localInstall
+    localInstall: dutyDef.localInstall,
+    path: __dirname
   };
   npmi(options, function (err, result) {
   	if (err) {
       reject(err);
-  	}
-    resolve(dutyDef);    
+  	} else {
+      resolve(dutyDef);
+    }
   });
 }
 
 var processDuty = function(dutyDef, resolve, reject) {
 
-  console.log(dutyDef.package); 
-  var duty = cp.fork(require.resolve(dutyDef.package));
-
-  if ((dutyDef.bootstrap != undefined)) {
-    duty.setup(...dutyDef.bootstrap);
-  }
+  var duty = cp.fork(path.join(__dirname, 'node_modules/'+dutyDef.package));
 
   if (dutyDef.schedule != undefined) {
     scheduler.scheduleDuty(duty, dutyDef);
   } else {
     runner.run(duty, dutyDef);
   }
-  resolve(true);
+
+  resolve();
 }

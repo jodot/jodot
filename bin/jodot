@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
 require('../index.js').start().then((ingrained) => {
-  console.log("All duties ingrained:");
-  console.log(ingrained);
+  console.log("Duties received");
 }).catch((error) => {
   console.log(error.message);
   process.exit(0);
 });
-

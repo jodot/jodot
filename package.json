@@ -24,6 +24,9 @@
     "url": "https://github.com/jodot/jodot/issues"
   },
   "license": "MIT",
+  "bin": {
+    "jodot": "./bin/jodot"
+  },
   "dependencies": {
     "hjson": "^1.8.2",
     "node-persist": "0.0.11",
