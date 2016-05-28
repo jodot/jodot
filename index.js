@@ -6,7 +6,7 @@ var process = require('./lib/process.js');
 
 var Jodot = function () {};
 
-Jodot.prototype.start = (dutyFile) => {
+Jodot.prototype.start = function(dutyFile) {
   return new Promise(function (resolve, reject) {
     fs.readFile(dutyFile, 'utf8', function(err, content) {
       if(err) {
@@ -43,4 +43,3 @@ var loadDuty = function(dutyDef, resolve, reject) {
     }
   });
 }
-
