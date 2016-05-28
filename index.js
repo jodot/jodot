@@ -2,17 +2,13 @@ var fs = require('fs');
 var npmi = require('npmi');
 var path = require('path');
 var Hjson = require('hjson');
-var cp = require('child_process');
-var scheduler = require('./lib/scheduler.js');
-var runner = require('./lib/runner.js');
-var path = require("path");
+var process = require('./lib/process.js');
 
 var Jodot = function () {};
 
-Jodot.prototype.start = () => {
-
+Jodot.prototype.start = (dutyFile) => {
   return new Promise(function (resolve, reject) {
-    fs.readFile('duties.hjson', 'utf8', function(err, content) {
+    fs.readFile(dutyFile, 'utf8', function(err, content) {
       if(err) {
         reject(err);
       } else {
@@ -22,16 +18,9 @@ Jodot.prototype.start = () => {
   	        loadDuty(dutyDef, resolve, reject);
           })
           .then((result) => {
-            processDuty(result, resolve, reject);
+            process(result);
           })
-          .then((result) => {
-            processDuty(result, resolve, reject);
-          })
-          .catch((err) => {
-            reject(err);
-          });
         });
-
         Promise.all(ingrained).then(() => resolve());
       }
     });
@@ -55,15 +44,3 @@ var loadDuty = function(dutyDef, resolve, reject) {
   });
 }
 
-var processDuty = function(dutyDef, resolve, reject) {
-
-  var duty = cp.fork(path.join(__dirname, 'node_modules/'+dutyDef.package));
-
-  if (dutyDef.schedule != undefined) {
-    scheduler.scheduleDuty(duty, dutyDef);
-  } else {
-    runner.run(duty, dutyDef);
-  }
-
-  resolve();
-}

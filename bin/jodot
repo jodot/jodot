@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-require('../index.js').start().then((ingrained) => {
+require('../index.js').start('duties.hjson').then((ingrained) => {
   console.log("Duties received");
 }).catch((error) => {
   console.log(error.message);

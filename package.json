@@ -34,7 +34,13 @@
     "npmi": "^1.0.1"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
     "mocha": "^2.4.5",
-    "nyc": "^6.4.4"
+    "nyc": "^6.4.4",
+    "require-uncached": "^1.0.2",
+    "rewire": "^2.5.1",
+    "sinon": "^1.17.4",
+    "sinon-as-promised": "^4.0.0"
   }
 }
