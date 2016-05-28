@@ -13,15 +13,15 @@ Jodot.prototype.start = function(dutyFile) {
         reject(err);
       } else {
         var duties = Hjson.rt.parse(content);
-        var ingrained = duties.map((dutyDef) => {
-          return new Promise((resolve, reject) => {
+        var ingrained = duties.map(function(dutyDef) {
+          return new Promise(function(resolve, reject) {
   	        loadDuty(dutyDef, resolve, reject);
           })
-          .then((result) => {
+          .then(function(result) {
             process(result);
           })
         });
-        Promise.all(ingrained).then(() => resolve());
+        Promise.all(ingrained).then(function() {resolve()});
       }
     });
   });
