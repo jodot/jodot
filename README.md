@@ -1,3 +1,7 @@
+> Jodot is your personal/team duty runner. Delegate software related duties to Jodot!
+
+[![Build Status](https://travis-ci.org/jodot/jodot.svg?branch=master)](https://travis-ci.org/jodot/jodot)
+
 Jodot
 =====
 
