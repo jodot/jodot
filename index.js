@@ -17,8 +17,11 @@ Jodot.prototype.start = function(dutyFile) {
           return new Promise(function(resolve, reject) {
   	        load(dutyDef, resolve, reject);
           })
-          .then(function(result) { 
+          .then(function(result) {
             process(result);
+          })
+          .catch(function(error) {
+            console.log('Error starting duty: '+error);
           })
         });
         Promise.all(committed).then(function() {resolve()});
@@ -28,4 +31,3 @@ Jodot.prototype.start = function(dutyFile) {
 };
 
 module.exports = new Jodot();
-
