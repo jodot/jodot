@@ -1,6 +1,14 @@
 #!/usr/bin/env node
 
-require('../index.js').start('duties.hjson').then((ingrained) => {
+var dutyFile;
+
+if (process.argv[2] === undefined) {
+  dutyFile = 'duties.hjson';
+} else {
+  dutyFile = process.argv[2];
+}
+
+require('../index.js').start(dutyFile).then((ingrained) => {
   console.log("Duties received");
 }).catch((error) => {
   console.log(error.message);
