@@ -4,6 +4,7 @@
   "description": "Install, configure and run Jodot duties",
   "main": "index.js",
   "scripts": {
+    "start": "bin/jodot",
     "test": "nyc mocha"
   },
   "keywords": [
