@@ -24,8 +24,33 @@ describe('jodot', function () {
     describe('rejected', function () {
       var revert;
       it('should throw an error if any duty fails to load', sinon.test(function (done) {
-        revert = jodot.__set__('loadDuty', sinon.stub().rejects('test error'));
+        revert = jodot.__set__('load', sinon.stub().rejects('test error'));
         assert.eventually.equal(jodot.start('duties.hjson'), 'test error').notify(done());
+      }));
+      afterEach(function () {
+        revert();
+      });
+    });
+    describe('ok', function () {
+      var revert;
+      it('should throw an error if any duty fails to load', sinon.test(function (done) {
+
+        var processStub = sinon.stub();
+        var loadStub = function(dutyDef, resolve, reject) {
+          console.log('load stub called');
+          resolve('test');
+        };
+        revert = jodot.__set__({
+          'process': processStub,
+          'load': loadStub
+        });
+
+        jodot.start('duties.hjson').then(function(){
+          console.log('hello');
+          sinon.assert.calledOnce(processStub);
+          done();
+        });
+
       }));
       afterEach(function () {
         revert();

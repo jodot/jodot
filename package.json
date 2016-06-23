@@ -1,9 +1,10 @@
 {
   "name": "jodot",
-  "version": "1.0.1",
+  "version": "1.3.0",
   "description": "Install, configure and run Jodot duties",
   "main": "index.js",
   "scripts": {
+    "start": "bin/jodot",
     "test": "nyc mocha"
   },
   "keywords": [

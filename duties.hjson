@@ -3,5 +3,5 @@
   {
     schedule: 1 * * * * *
     package: jodot-alive
-  }
+  },
 ]
