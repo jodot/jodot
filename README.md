@@ -1,3 +1,8 @@
+
+<h1 align="center">
+	<img width="360" src="https://cdn.rawgit.com/jodot/assets/v1.1/JodotLogoMedium.png" alt="chalk">
+</h1>
+
 > Jodot is your personal/team duty runner. Delegate software related duties to Jodot!
 
 [![Build Status](https://travis-ci.org/jodot/jodot.svg?branch=master)](https://travis-ci.org/jodot/jodot)
