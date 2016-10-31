@@ -10,6 +10,8 @@
 Jodot
 =====
 
+[![Join the chat at https://gitter.im/jodot/jodot](https://badges.gitter.im/jodot/jodot.svg)](https://gitter.im/jodot/jodot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Jodot is a long-running process that executes duties that are delegated to it.
 The current version of Jodot supports scheduled duties. It should support event
 based duties as well as one-off duties.
