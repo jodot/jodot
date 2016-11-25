@@ -22,7 +22,7 @@ is to tap onto the massive npm repository of functions and modules to easily
 assemble automation scripts (duties).
 
 Run Jodot within your environment of choice. Since Jodot is open source and you
-maintain complete control of how it is ran, duties delegated to it can be much
+maintain complete control of how it is run, duties delegated to it can be much
 more personal/confidential than automation on hosted solutions.
 
 Some ideas for duties:
