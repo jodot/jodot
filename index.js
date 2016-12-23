@@ -12,8 +12,9 @@ Jodot.prototype.start = function(dutyFile) {
       if(err) {
         reject(err);
       } else {
-        var duties = Hjson.rt.parse(content);
-        var committed = duties.map(function(dutyDef) {
+        var dutyDefs = Hjson.rt.parse(content);
+        global.duties = {};
+        var committed = dutyDefs.map(function(dutyDef) {
           return new Promise(function(resolve, reject) {
   	        load(dutyDef, resolve, reject);
           })

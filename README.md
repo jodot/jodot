@@ -100,3 +100,5 @@ Temporarily caveats
 
 [jodot-alive]: <https://github.com/jodot/jodot-alive>
 [publicly available duties]:https://www.npmjs.com/browse/depended/jodot
+
+> Jodot is still a work in progress. If you wish to help with more features, tests, documentation, task/duty sources and etc please send PRs here :)
